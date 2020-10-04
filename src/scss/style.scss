@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
 @import "./mixins";
 @import "./variables";
+@import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
   margin: 0;
@@ -9,7 +11,6 @@
   box-sizing: border-box;
 }
 
-*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -17,102 +18,400 @@
 
 body {
   min-height: 100vh;
-  @include flex();
   background-color: $bodyColor;
 }
 
+header {
+  background-color: rgba(3, 29, 39, 0.2);
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 1px 0 5px black;
+
+  h1 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 200px;
+    font-family: "Sansita Swashed", cursive;
+    letter-spacing: 2px;
+  }
+
+  ul {
+    display: flex;
+
+    li {
+      list-style: none;
+      margin: 0 18px;
+      overflow: hidden;
+      position: relative;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 600;
+        padding: 10px;
+        position: relative;
+        z-index: 1;
+        color: #fff;
+        text-transform: uppercase;
+        transition: color 0.2s linear;
+        font-family: "Poppins", sans-serif;
+
+        &::after {
+          position: absolute;
+          content: "";
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          background-color: white;
+          z-index: -1;
+          transform: translateX(-101%);
+          transition: transform 0.2s;
+          transition-delay: 0.2s;
+        }
+
+        &:hover {
+          color: #2a0c04;
+        }
+
+        span {
+          transform: translateX(101%);
+          transition: transform 0.2s linear;
+          transition-delay: 0.35s;
+        }
+
+        span:nth-child(1) {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background-color: #fff;
+        }
+
+        span:nth-child(2) {
+          position: absolute;
+          left: 0;
+          bottom: 10px;
+          width: 100%;
+          height: 1px;
+          background-color: #fff;
+        }
+
+        &:hover span {
+          transform: translateX(0%);
+          transition-delay: 0s;
+        }
+
+        &:hover::after {
+          transform: translateX(0%);
+        }
+      }
+    }
+  }
+}
+
 .div-form {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border: 1px solid rgba(0, 0, 0, 0.24);
   width: 550px;
   transition: transform 0.2s ease-in-out;
-  position: relative;
+  position: absolute;
   background-color: rgba(3, 29, 39, 0.2);
   border-radius: 8px;
+  height: 135px;
   color: #ffffff;
+  transition: all 0.5s ease-in;
+  overflow: hidden;
 
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -80px;
-    left: 0;
-    width: 100%;
-    height: 20px;
-    background: rgba(1, 15, 20, 0.3);
-    border-radius: 50%;
-    z-index: -1;
-    filter: blur(10px);
+  footer {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.507);
+    position: relative;
+    top: -10px;
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.507);
+  }
+
+  a {
+    text-decoration: none;
+    color: rgb(22, 145, 182);
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      background-color: rgb(50, 167, 202);
+      transform: scaleX(0);
+      transition: transform 0.2s ease-in;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+
+    &:hover {
+      color: rgb(50, 167, 202);
+    }
   }
 
   & .header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.24);
     padding: 10px;
+    box-shadow: 0 1px 10px -5px black;
+    margin-bottom: 5px;
+    position: relative;
+
+    .arrow {
+      position: absolute;
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%) rotate(0deg);
+      font-size: 2.3rem;
+      z-index: 10;
+      cursor: pointer;
+      transition: 0.5s;
+
+      &:hover {
+        transform: translateY(-50%) rotate(30deg);
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.335));
+      }
+    }
+
+    .arrowactive {
+      position: absolute;
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%) rotate(180deg);
+      font-size: 2.3rem;
+      z-index: 10;
+      transition: 0.5s;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-50%) rotate(150deg);
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.335));
+      }
+    }
 
     & h1 {
+      position: relative;
       font-weight: 700;
-      font-size: 2.7rem;
+      font-size: 3.5rem;
       margin-bottom: 10px;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      color: white;
+      top: 15px;
+      text-shadow: -1px 1px cyan, -2px 2px cyan, -3px 3px cyan, -4px 4px cyan,
+        0px 0px 20px rgba(0, 255, 255, 0.322);
+      cursor: default;
+      transition: top 0.4s ease-in;
     }
 
     & p {
       margin-bottom: 5px;
+      text-align: center;
+      opacity: 0;
+      transition: Opacity 0.5s ease-in;
     }
   }
 
   & form {
     position: relative;
-    padding: 10px;
+    padding: 15px;
+
+    & .eye {
+      position: absolute;
+      right: 48%;
+      top: 0;
+      z-index: 10;
+      font-size: 2rem;
+      color: rgb(40, 157, 192);
+      cursor: pointer;
+    }
+
+    & .button {
+      display: flex;
+      justify-content: center;
+      position: relative;
+
+      .disable-button {
+        color: rgba(255, 255, 255, 0.616);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 15px;
+        cursor: default;
+        background-color: rgba(3, 29, 39, 0.5);
+        padding: 4px 0;
+        transition: all 0.3s linear;
+        border-radius: 5px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        user-select: none;
+        opacity: 0.5;
+      }
+
+      & .enable-button {
+        color: rgba(255, 255, 255, 0.616);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 15px;
+        cursor: pointer;
+        background-color: rgba(3, 29, 39, 0.5);
+        padding: 4px 0;
+        transition: all 0.3s linear;
+        border-radius: 5px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        user-select: none;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #2ecc71;
+          z-index: -1;
+          transform: translateY(100%);
+          transition: transform 0.3s linear;
+        }
+
+        &:hover::after {
+          transform: translateY(0);
+        }
+
+        &:hover {
+          color: rgb(255, 255, 255);
+        }
+      }
+    }
 
     & .form-group {
       display: flex;
       flex-direction: column;
-      margin: 15px 0;
+      overflow-x: hidden;
+      margin-bottom: 20px;
+      padding-top: 14px;
+      position: relative;
+
+      & .error-icon {
+        position: absolute;
+        right: 5px;
+        top: 38%;
+        font-size: 24px;
+        color: red;
+      }
+
+      & .checked-icon {
+        position: absolute;
+        right: 5px;
+        top: 38%;
+        font-size: 24px;
+        color: green;
+      }
+
+
+
+      & .icons {
+        position: absolute;
+        bottom: 0;
+        left: -1px;
+        transform: translateY(-55%);
+        font-size: 1.2rem;
+        color: #2ecc71;
+      }
 
       & span {
         position: relative;
-        background-color: rgb(31, 195, 141);
+        background-color: cyan;
         width: 100%;
         height: 2px;
-        transform: scaleX(0);
-        transition: 0.4s ease-in;
+        transition: transform 0.3s ease-in-out;
         bottom: 2px;
-        transform-origin: left;
-        box-shadow: 0 0 5px rgb(31, 195, 141);
-        animation: colors 5s linear infinite alternate-reverse;
+        transform: translateX(-100%);
       }
 
       & label {
+        color: rgba(255, 255, 255, 0.835);
+        position: absolute;
+        bottom: 0;
+        left: 12px;
         font-weight: 600;
         letter-spacing: 0.5px;
+        padding: 10px;
+        pointer-events: none;
+        transition: 0.3s ease-in-out;
       }
+
+      // & .erroricon {
+      //   position: absolute;
+      //   right: 5px;
+      //   bottom: 8px;
+      //   color: rgb(236, 69, 69);
+      //   font-size: 1.6rem;
+      //   pointer-events: none;
+      // }
 
       & input {
         all: unset;
-        background-color: #c0bfbf;
-        padding: 10px;
+        background-color: transparent;
+        padding: 5px;
+        padding-left: 22px;
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
-        transition: 0.2s ease;
+        border-bottom: 2px solid grey;
+        transition: transform 0.2s ease, border 0.2s ease;
 
-        &:focus~span {
-          transform: scaleX(1);
-          transform-origin: right;
+        &:focus~span,
+        &:valid~span {
+          transform: translateX(0);
+        }
+
+        &:focus+label,
+        &:valid+label {
+          bottom: 25px;
+          left: 0;
+          font-size: 14px;
+          color: cyan;
         }
       }
     }
-  }
 
-  & .button {
-    margin-bottom: 10px;
-  }
-}
-
-@keyframes colors {
-  0% {
-    filter: hue-rotate(180deg);
-  }
-
-  100% {
-    filter: hue-rotate(360deg);
+    .error {
+      color: rgb(182, 61, 61);
+      margin-top: -17px;
+      margin-bottom: 2px;
+      font-size: 14px;
+      margin-left: 5px;
+    }
   }
 }
